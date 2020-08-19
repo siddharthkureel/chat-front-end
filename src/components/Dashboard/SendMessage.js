@@ -20,6 +20,7 @@ const SendMessage = ({ chatState, userId }) => {
     })
     useEffect(() => {
         socket.on('message', ({ userId, content, chatroom }) => {
+            console.log(userId, content, chatroom )
             dispatch(sendMessage({
                 chatroomId: chatroom,
                 userId,
@@ -31,7 +32,7 @@ const SendMessage = ({ chatState, userId }) => {
         return () => {
             socket.close();
         };
-    });
+    },[]);
     const handleSubmit = (e, content, setContent) => {
         e.preventDefault()
         socket.emit('sendMessage', {

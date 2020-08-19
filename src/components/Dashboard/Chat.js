@@ -14,7 +14,8 @@ const useStyles = () => {
         },
         main: {
             width: '100%',
-            maxHeight: '100vh'
+            maxHeight: '80vh',
+            overflowY: 'scroll'
         },
         messages: {
             margin: '16px',
@@ -46,7 +47,7 @@ const Chat = () => {
                         {messages === '' ?
                         <h2>Say hi, to begin with conversation</h2>
                         :
-                        <ScrollToBottom style={styles.messages}>
+                        <ScrollToBottom >
                             {
                                 messages.map((message, i)=>(
                                     <div key={i} style={message.userId===id ? styles.pullRight: styles.pullLeft}>
