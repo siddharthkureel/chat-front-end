@@ -1,10 +1,13 @@
 import React from 'react';
 import ScrollToBottom from 'react-scroll-to-bottom';
 import { useSelector } from 'react-redux';
+import { css } from 'glamor';
 
 import SendMessage from './SendMessage';
 
-
+const ROOT_CSS = css({
+    height: '80%'
+  });
 const useStyles = () => {
     return {
         row: { height: '100%' },
@@ -14,11 +17,10 @@ const useStyles = () => {
         },
         main: {
             width: '100%',
-            maxHeight: '80vh',
-            overflowY: 'scroll'
+            maxHeight: '80vh'
         },
         messages: {
-            margin: '16px',
+            overflowY: 'scroll',
             height: '80%'
         },
         pullRight: {
@@ -47,7 +49,7 @@ const Chat = () => {
                         {messages === '' ?
                         <h2>Say hi, to begin with conversation</h2>
                         :
-                        <ScrollToBottom >
+                        <ScrollToBottom className={ROOT_CSS}>
                             {
                                 messages.map((message, i)=>(
                                     <div key={i} style={message.userId===id ? styles.pullRight: styles.pullLeft}>
