@@ -22,7 +22,6 @@ export const chatroom = (payload) => async dispatch => {
 }
 
 export const sendMessage = (payload) => async dispatch => {
-   console.log(payload)
    dispatch({
       type:'MESSAGE',
       payload

@@ -18,12 +18,18 @@ const Dashboard = () => {
     const dispatch = useDispatch();
     const styles = useStyles();
     const handleClient = (clientId) => {
-        let id;
-        user.type==='client' ? id = user.linkId : id = user.id
-        dispatch(chatroom({
-            userId: id,
-            clientId
-        }))
+        if(user.type==='client'){
+            dispatch(chatroom({
+                userId: clientId,
+                clientId: user.linkId
+            }))
+        }else{
+            dispatch(chatroom({
+                userId: user.id,
+                clientId
+            }))
+        }
+
     }
     return (
         <div className="container" style={styles.container}>

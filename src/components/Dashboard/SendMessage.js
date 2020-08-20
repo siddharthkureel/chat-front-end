@@ -19,13 +19,12 @@ const SendMessage = ({ chatState, userId }) => {
         }
     })
     useEffect(() => {
-        socket.on('message', ({ userId, content, chatroom }) => {
-            console.log(userId, content, chatroom )
+        socket.on('message', ({ userId, content, chatroom, createdAt }) => {
             dispatch(sendMessage({
                 chatroomId: chatroom,
                 userId,
                 content,
-                createdAt: new Date(new Date().toString().split('GMT')[0]+' UTC').toISOString().split('.')[0]
+                createdAt
             }))
         })
         socket.open();
@@ -38,7 +37,8 @@ const SendMessage = ({ chatState, userId }) => {
         socket.emit('sendMessage', {
             chatroom,
             userId,
-            content
+            content,
+            createdAt: Date.now() 
         }, (error) => { console.log(error) })
         setContent('')
     }

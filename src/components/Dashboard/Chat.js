@@ -2,12 +2,13 @@ import React from 'react';
 import ScrollToBottom from 'react-scroll-to-bottom';
 import { useSelector } from 'react-redux';
 import { css } from 'glamor';
+import moment from 'moment';
 
 import SendMessage from './SendMessage';
 
 const ROOT_CSS = css({
     height: '80%'
-  });
+});
 const useStyles = () => {
     return {
         row: { height: '100%' },
@@ -56,7 +57,7 @@ const Chat = () => {
                                         <div className="card">
                                             <div className="card-body">
                                                 <h5 className="card-title">{message.content}</h5>
-                                                <h6 className="card-link">{message.createdAt.split('T')[1]}</h6>
+                                                <h6 className="card-link">{moment(message.createdAt).calendar()}</h6>
                                             </div>
                                         </div>
                                     </div>
