@@ -1,7 +1,7 @@
 import React from 'react';
 import { useScrollToBottom } from 'react-scroll-to-bottom';
  
-const useStyle = () => {
+const useStyles = () => {
     return {
         input: {
             width: '70%'
@@ -16,18 +16,19 @@ const Input = ({ handleSubmit }) => {
 
     const scrollToBottom = useScrollToBottom();
     const [content, setContent] = React.useState('');
-    const style = useStyle()
+    const styles = useStyles();
+    
     return (
-        <form onSubmit={(e)=>handleSubmit(e, content, setContent)} id="message-form">
+        <form onSubmit={(e) => handleSubmit(e, content, setContent)} id="message-form">
             <input 
-                onChange={(e)=>setContent(e.target.value)} 
+                onChange={(e) => setContent(e.target.value)} 
                 name="message" 
                 placeholder="Message" 
                 required
                 value={content}
-                style={style.input}
+                style={styles.input}
             />
-            <button style={style.button} onClick={ scrollToBottom } type="submit" className="btn btn-primary">Send</button>
+            <button style={styles.button} onClick={ scrollToBottom } type="submit" className="btn btn-primary">Send</button>
         </form>
     );
 }

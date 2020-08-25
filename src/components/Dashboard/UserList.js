@@ -11,13 +11,14 @@ const useStyles = () =>{
 }
 
 const UserList = ({ handleClient }) => {
-    const styles = useStyles()
-    const { clients } = useSelector(state=>state.userState)
+    const styles = useStyles();
+    const clients = useSelector(state=>state.userState.clients);
+    
     return (
         <div className="col-md-4" style={styles.container}>
             {
-                clients.map(client=>(
-                    <Card key={client.id} client={client} handleClient={handleClient} />
+                clients.map((client, i)=>(
+                    <Card key={i} client={client} handleClient={handleClient} />
                 ))
             }
         </div>

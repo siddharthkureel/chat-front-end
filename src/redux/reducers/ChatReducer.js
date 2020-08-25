@@ -1,8 +1,8 @@
 const initialState = {
     chat: false,
     chatroom: null,
-    userId: null,
-    clientId: null,
+    userA: null,
+    userB: null,
     messages: []
 }
 
@@ -11,8 +11,8 @@ export const loadchat = (state = initialState, action) => {
         return {
             ...state,
             chatroom: action.payload._id,
-            userId: action.payload.userId,
-            clientId: action.payload.clientId,
+            userA: action.payload.userA,
+            userB: action.payload.userB,
             messages: action.payload.messages,
             chat: true
         }

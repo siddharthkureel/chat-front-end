@@ -9,6 +9,7 @@ import SendMessage from './SendMessage';
 const ROOT_CSS = css({
     height: '80%'
 });
+
 const useStyles = () => {
     return {
         row: { height: '100%' },
@@ -35,12 +36,11 @@ const useStyles = () => {
     }
 }
 
-const Chat = () => {
+const Chat = ({ socket }) => {
     const styles = useStyles();
-    const chatState = useSelector(state=>state.chatState)
-    const user = useSelector((state)=>(state.userState.user))
-    let id;
-    user.type==='client' ? id = user.linkId : id = user.id
+    const chatState = useSelector(state=>state.chatState);
+    const user = useSelector((state)=>(state.userState.user));
+    const id = user._id
     const messages = chatState.messages;
     return (
         <div className="col-md-8">
@@ -50,6 +50,7 @@ const Chat = () => {
                         {messages === '' ?
                         <h2>Say hi, to begin with conversation</h2>
                         :
+                        //this className={ROOT_CSS} created warning which can be ignored
                         <ScrollToBottom className={ROOT_CSS}>
                             {
                                 messages.map((message, i)=>(
@@ -68,7 +69,7 @@ const Chat = () => {
                     {
                         !chatState.chat ? 
                         <div>Select User</div>:
-                        <SendMessage userId={id} chatState={chatState} />
+                        <SendMessage socket={socket} userId={id} chatState={chatState} />
                     }
                     </div>
                 </div>
